@@ -1,0 +1,25 @@
+spring.application.name: kafka-schema-registry
+server.port: 8080
+
+logging.level:
+  org.springframework: INFO
+  com.sunil.bainsla: INFO
+
+spring.cloud.stream.bindings:
+  topicConsumer-in-0:
+    destination: topic1
+    group: topic-consumer-group-1
+
+spring.cloud.stream:
+  function.definition: topicConsumer;
+  kafka.streams:
+    bindings:
+      topicConsumer-in-0.consumer.configuration.application.id: ${spring.application.name}-testtopicConsumer
+
+    binder:
+      configuration:
+        key.serializer: org.apache.kafka.common.serialization.StringSerializer
+        commit.interval.ms: 1000
+        processing.guarantee: exactly_once_v2
+        max.poll.interval.ms: 2147483647 # 300000
+      deserializationExceptionHandler: logAndContinue
