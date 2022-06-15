@@ -11,7 +11,7 @@ import org.apache.kafka.common.serialization.StringSerializer;
 
 import java.util.Properties;
 
-public class KukooDemo {
+public class KukooProducerV1Demo {
 
     public static void main(String[] args) {
         Properties properties = new Properties();
@@ -30,14 +30,14 @@ public class KukooDemo {
 
         // copied from avro examples
         Kukoo kukoo = Kukoo.newBuilder()
-                .setName("Sunil")
+                .setName("dhkskjfdsfsfskfsfklfhs")
                 .build();
 
         ProducerRecord<String, Kukoo> producerRecord = new ProducerRecord<String, Kukoo>(
                 topic, kukoo
         );
 
-        System.out.println(kukoo);
+        System.out.println("Records----------->"+kukoo);
         producer.send(producerRecord, new Callback() {
             @Override
             public void onCompletion(RecordMetadata metadata, Exception exception) {

@@ -2,8 +2,7 @@ spring.application.name: kafka-schema-registry
 server.port: 8080
 
 logging.level:
-  org.springframework: INFO
-  com.sunil.bainsla: INFO
+  com.sunil.bainsla: TRACE
 
 spring.cloud.stream.bindings:
   topicConsumer-in-0:

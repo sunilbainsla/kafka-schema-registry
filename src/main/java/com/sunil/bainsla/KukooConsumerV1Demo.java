@@ -18,7 +18,7 @@ public class KukooConsumerV1Demo {
         properties.setProperty("bootstrap.servers","127.0.0.1:9092");
         properties.put("group.id", "customer-consumer-group-v1");
         properties.put("auto.commit.enable", "false");
-        properties.put("auto.offset.reset", "earliest");
+        properties.put("auto.offset.reset", "latest");
 
         // avro part (deserializer)
         properties.setProperty("key.deserializer", StringDeserializer.class.getName());
@@ -35,10 +35,10 @@ public class KukooConsumerV1Demo {
         while (true){
             System.out.println("Polling");
             ConsumerRecords<String, Kukoo> records = kafkaConsumer.poll(1000);
-
+            System.out.println("after polling "+records);
             for (ConsumerRecord<String, Kukoo> record : records){
                 Kukoo kukoo = record.value();
-                System.out.println(kukoo);
+                System.out.println("Records arrived"+kukoo);
             }
 
             kafkaConsumer.commitSync();
